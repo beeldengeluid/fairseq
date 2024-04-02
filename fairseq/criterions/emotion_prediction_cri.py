@@ -279,8 +279,7 @@ class EmotionPredictionCriterion(FairseqCriterion):
             }
 
 
-          
-        print(logging_output)
+        
         return logging_output# (SAMPLE SIZE? loss deleted )
 
     @staticmethod        #accuracy is here
