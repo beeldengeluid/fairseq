@@ -537,10 +537,17 @@ class FairseqTask(object):
         return loss, sample_size, logging_output
 
     def valid_step(self, sample, model, criterion):
+   
         model.eval()
         with torch.no_grad():
-            loss, sample_size, logging_output = criterion(model, sample)
-        return loss, sample_size, logging_output
+            logging_output = criterion(model, sample)  #calling the same criterion loss function #loss deleted MODIFIED
+            #print("Prediction", sample_size) #MODIFIED
+            #print("Probabilities", logging_output)
+            preds = list(logging_output)[0]  # First value
+            probabilities = list(logging_output)[1]  # Second value
+
+        return preds, probabilities
+
 
     def optimizer_step(self, optimizer, model, update_num):
         optimizer.step()
